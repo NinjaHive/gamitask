@@ -1,0 +1,50 @@
+﻿.login-frame {
+  /* when hiding the picture */
+  /* when showing the picture */
+}
+
+.login-frame md-card {
+  max-width: 400px;
+  margin: auto;
+}
+
+.login-frame md-checkbox {
+  margin: 0;
+}
+
+.login-frame img {
+  max-height: 100px;
+  width: auto;
+}
+
+.login-frame md-toolbar .md-headline {
+  margin: 0;
+}
+
+.login-frame .md-primary:not(.md-raised) {
+  text-transform: none;
+}
+
+.login-frame .notAuthenticated {
+  position: relative;
+  order: 4;
+  text-align: center;
+  padding-top: 5%;
+  color: #ff5722;
+}
+
+.login-frame .ng-hide-add {
+  -moz-animation: 0.5s fadeOutUp ease;
+  -o-animation: 0.5s fadeOutUp ease;
+  -webkit-animation: 0.5s fadeOutUp ease;
+  animation: 0.5s fadeOutUp ease;
+}
+
+.login-frame .ng-hide-remove {
+  -moz-animation: 0.5s fadeInDown ease;
+  -o-animation: 0.5s fadeInDown ease;
+  -webkit-animation: 0.5s fadeInDown ease;
+  animation: 0.5s fadeInDown ease;
+}
+
+/*# sourceMappingURL=login.tmpl.css.map */
