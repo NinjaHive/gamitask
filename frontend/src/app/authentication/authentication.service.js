@@ -23,17 +23,15 @@ function ($http, $rootScope, $cookieStore, AUTH_EVENTS, API_CONFIG) {
     };
     //SetCredentials
     authService.setCredentials = function (email, password, userInfo, token) {
-        var authdata = Base64.encode(email + ':' + password);
 
         $rootScope.globals = {
             currentUser: {
                 userInfo: userInfo,
-                authdata: authdata,
                 token: token
             }
         };
 
-        $http.defaults.headers.common['Authorization'] = 'Basic ' + authdata; // jshint ignore:line
+        $http.defaults.headers.common['Authorization'] = 'Basic ' + token; // jshint ignore:line
         $cookieStore.put('globals', $rootScope.globals);
     }
 
@@ -44,7 +42,7 @@ function ($http, $rootScope, $cookieStore, AUTH_EVENTS, API_CONFIG) {
     }
 
     authService.isAuthenticated = function () {
-        return $rootScope.globals.currentUser;
+        return  $cookieStore.get('globals').currentUser.userInfo;
     };
 
     authService.isAuthorized = function (authorizedRoles) {
