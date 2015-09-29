@@ -93,7 +93,7 @@ app.post('/register', function (req, res) {
                 errorMessage: "",
                 data: {
                     user: data,
-                    token:token
+                    token: token
                 }
             });
         },
@@ -132,6 +132,34 @@ app.post('/login', function (req, res) {
             });
         }
         );
+});
+app.post('/getprofile', function (req, res) {
+    jwt.verify(req.header["Authorization"], app.get('superSecret'), function (error, decoded) {
+        if (error)
+            res.json({
+                errorCode: 2,
+                errorMessage: "Invalid Token",
+                data: null
+            });
+        else
+            authenticateService.getUserById(req.body.id).then(
+        function (data) {
+            if (data)
+                res.json({
+                    errorCode: 0,
+                    errorMessage: "",
+                    data: data
+                });
+        },
+        function (err) {
+            res.json({
+                errorCode: 1,
+                errorMessage: err.message,
+                data: null
+            });
+        }
+        )
+    });
 });
 //Create Missions
 app.post('/create-mission', function (req, res) {

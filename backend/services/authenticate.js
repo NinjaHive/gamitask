@@ -2,7 +2,7 @@
 var User = require('../models/user');
 var jwt = require('jsonwebtoken'); // used to create, sign, and verify tokens
 var base64 = require('base-64');
-
+var ObjectId = require('mongoose').Types.ObjectId;
 module.exports = {
     getUsers: function () {
         var defered = $q.defer();
@@ -28,7 +28,19 @@ module.exports = {
         });
         return defered.promise;
     },
+    getUserById: function (id) {
+        var defered = $q.defer();
 
+        var query = User.findOne({ _id: new ObjectId(id) });
+        query.select('_id first_name last_name email nick_name mobile address');
+        query.exec(function (err, user) {
+            if (err)
+                defered.reject(err);
+            else
+                defered.resolve(user);
+        });
+        return defered.promise;
+    },
     createUser: function (user) {
         var defered = $q.defer();
 
