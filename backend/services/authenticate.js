@@ -67,6 +67,7 @@ module.exports = {
                 minifiedUser.first_name = user.first_name;
                 minifiedUser.last_name = user.last_name;
                 minifiedUser.id = user._id;
+                minifiedUser.nick_name = user.nick_name;
                 // return the information including token as JSON
                 defered.resolve(
                   minifiedUser

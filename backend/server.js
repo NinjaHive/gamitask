@@ -67,20 +67,29 @@ app.get('/', function (req, res) {
 });
 
 app.get('/users', function (req, res) {
-    authenticateService.getUsers().then(
-        function (data) {
+    jwt.verify(req.header["Authorization"], app.get('superSecret'), function (error, decoded) {
+        if (error)
             res.json({
-                errorCode: 0,
-                errorMessage: "",
-                data: data
-            });
-        }, function (err) {
-            res.json({
-                errorCode: 1,
-                errorMessage: err.message,
+                errorCode: 2,
+                errorMessage: "Invalid Token",
                 data: null
             });
-        });
+        else
+            authenticateService.getUsers().then(
+                function (data) {
+                    res.json({
+                        errorCode: 0,
+                        errorMessage: "",
+                        data: data
+                    });
+                }, function (err) {
+                    res.json({
+                        errorCode: 1,
+                        errorMessage: err.message,
+                        data: null
+                    });
+                });
+    })
 });
 app.post('/register', function (req, res) {
     authenticateService.createUser(req.body).then(
