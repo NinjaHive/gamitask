@@ -67,7 +67,7 @@ app.get('/', function (req, res) {
 });
 
 app.get('/users', function (req, res) {
-    jwt.verify(req.header["Authorization"], app.get('superSecret'), function (error, decoded) {
+    jwt.verify(req.headers["token"], app.get('superSecret'), function (error, decoded) {
         if (error)
             res.json({
                 errorCode: 2,
@@ -143,7 +143,7 @@ app.post('/login', function (req, res) {
         );
 });
 app.post('/getprofile', function (req, res) {
-    jwt.verify(req.header["Authorization"], app.get('superSecret'), function (error, decoded) {
+    jwt.verify(req.headers["token"], app.get('superSecret'), function (error, decoded) {
         if (error)
             res.json({
                 errorCode: 2,
