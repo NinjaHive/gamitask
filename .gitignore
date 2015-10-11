@@ -1,19 +1,7 @@
-GamificationMaven/target/
-GamificationMaven/node/
-GamificationMaven/src/main/webapp/node/
+
 
 node_modules/
 bower_components/
-.tmp/
-e2e/
-.bowerrc
-.editorconfig
-.jshintrc
-.yo-rc.json
-changlog.md
-karma.conf.js
-protractor.conf.js
-README.md
 *.log
 
 build/
